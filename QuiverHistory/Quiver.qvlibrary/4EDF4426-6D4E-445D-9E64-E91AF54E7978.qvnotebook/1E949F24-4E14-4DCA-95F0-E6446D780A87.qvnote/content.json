@@ -1,0 +1,60 @@
+{
+  "title": "4 - Javascript 中 typeof 与 instanceof 区别",
+  "cells": [
+    {
+      "type": "markdown",
+      "data": "## typeof\n`typeof` **操作符返回一个字符串，表示未经计算的操作数的类型**\n\n使用方法：\n```js\n  typeof operand\n  typeof (operand)\n```\n`operand`  **表示对象或原始值的表达式，其类型将被返回**\n\n如："
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "    typeof 1    // 'number'\n    typeof '1'  // 'string'\n    typeof undefined    // 'undefined'\n    typeof true     // boolean\n    typeof Symbol()     // 'symbol'\n    typeof null     // 'object'\n    typeof []     // 'object'\n    typeof {}     // 'object'\n    typeof console     // 'object'\n    typeof console.log     // 'function'"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "虽然 typeof null 返回的是 object ，但并不代表 null 是对象， 这只是 Javascript 一个 存在已久的 bug.<div><br></div><div>所以在判断 是否为 null 的时候，不能用 typeof 来判断。 直接用 === null 来判断就好</div>"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "markdown",
+      "data": "## instanceof \n`instanceof`  **运算符用于检测 构造函数的 prototype 属性是否出现在某个实例对象的原型链上**\n\n使用方法：\n```js\n  object instanceof constructor\n```\n`object` 为实例对象， `constructor` 为构造函数\n  object 是否在 有 constructor 这个构造函数的 原型链上\n\n如：\n"
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "    // 定义构造函数\n    let Car = function(){}\n    let benz = new Car()\n    benz instanceof Car // true\n    \n    let car = new String('xxx')\n    car instanceof String // true\n    \n    let str = 'xxx'\n    str instanceof String // false"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "markdown",
+      "data": "## 区别：\n`typeof` 与 `instanceof` 都是判断数据类型的方法，区别如下：\n  * `typeof`会返回一个变量的基本类型， `instanceof` 返回的是一个布尔值\n  * `instanceof` 可以准确地判断复杂引用数据类型，但是不能正确判断基础数据类型\n  * `typeof` 也存在弊端，它虽然可以判断基础数据类型（ null 除外），但是引用数据类型中，除了 `function`类型以外，其他的也无法判断\n  \n** 综上所述，两者都有弊端，如果需要通过检测数据类型， 可以采用 `Object.prototype.toString`, 调用该方法，统一返回格式**\n** `\"[object xxx]\"`的 字符串**\n\n如："
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "    Object.prototype.toString.call({})           // \"[object Object]\"\n    Object.prototype.toString.call(1)           // \"[object Number]\"\n    Object.prototype.toString.call('1')           // \"[object String]\"\n    Object.prototype.toString.call(true)           // \"[object Boolean]\"\n    Object.prototype.toString.call(function(){})           // \"[object Function]\"\n    Object.prototype.toString.call(null)           // \"[object Null]\"\n    Object.prototype.toString.call(undefined)           // \"[object Object]\"\n    Object.prototype.toString.call(/123/g)           // \"[object RegExp]\"\n    Object.prototype.toString.call(new Date())           // \"[object Date]\"\n    Object.prototype.toString.call([])           // \"[object Array]\"\n    Object.prototype.toString.call(document)           // \"[object HTMLDocument]\"\n    Object.prototype.toString.call(window)           // \"[object Window]\""
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": ""
+    }
+  ]
+}

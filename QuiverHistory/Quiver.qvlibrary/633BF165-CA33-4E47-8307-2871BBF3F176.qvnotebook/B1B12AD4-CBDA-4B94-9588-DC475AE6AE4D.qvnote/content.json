@@ -1,0 +1,17 @@
+{
+  "title": "1 - CSS 阴影",
+  "cells": [
+    {
+      "type": "markdown",
+      "data": "## text-shadow \n\n为文字添加阴影，可以为 **文字** 和 **text-decoration** 添加多个阴影， 添加多个阴影，阴影值之间用逗号隔开。每个阴影值由元素在X和Y方向的偏移量、模糊半径和颜色值组成。\n\n> 当阴影大于一个时要用逗号区别开阴影之间的参数;\n> 每个阴影都有两到三个<length>参数 ， 以及一个与阴影颜色相关的<color>参数 。    \n\n* 前两个<length>参数，是以“文字中心”为原点的坐标轴，分别为x轴 <offset-x> 和y轴 <offset-y> 的值；\n* 如果有第三个<length>参数，则第三个数值为形成阴影效果的半径的数值 <blur-radius> 。\n* <color> 可选。可以在偏移量之前或之后指定。如果没有指定颜色，则使用UA（用户代理）自行选择的颜色。\n\n\n```css\n  text-shadow: 1px 1px 2px pink;\n```\n```css\n  text-shadow: #FC0 1px 0 10px;\n```\n```css\n  text-shadow: 1px 1px 2px red, 0 0 1em blue, 0 0 0.2em blue;\n```\n\n<br>\n\n### text-decoration\n\n这个 CSS 属性是用于设置文本的修饰线外观的（下划线、上划线、贯穿线/删除线  或 闪烁）它是 text-decoration-line,text-decoration-color, text-decoration-style, 和新出现的 text-decoration-thickness 属性的缩写。\n\n**文本修饰属性会延伸到子元素。这意味着如果祖先元素指定了文本修饰属性，子元素则不能将其删除。**\n\n#### 值：\n\n* text-decoration-line 文本修饰的位置, 如下划线underline，删除线line-through\n  * none （初始值）\n  * underline 下划线\n  * overline 上划线\n  * line-through  贯穿线/删除线\n* text-decoration-color 文本修饰的颜色\n* text-decoration-style 文本修饰的样式, 如波浪线wavy实线solid虚线dashed\n  * solid 画一条实线。\n  * double 画一条双实线。\n  * dotted 画一条点划线。\n  * dashed 画一条虚线。\n  * dwavy 画一条波浪线。\n* text-decoration-thickness 文本修饰线的粗细"
+    },
+    {
+      "type": "markdown",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": ""
+    }
+  ]
+}

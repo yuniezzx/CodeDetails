@@ -1,0 +1,33 @@
+{
+  "title": "6 - JavaScript 中 跳出循环（ return ，break， continue）",
+  "cells": [
+    {
+      "type": "markdown",
+      "data": "## Break 语句\n  \n ** break语句会使运行的程序立即退出包含在最内层的循环 或者退出一个 Switch 语句。**\n \n ```js\n    for(var i = 1; i < 10; i ++){\n      if(i == 9){\n        break;\n        }\n        console.log(i)\n    }\n    \n    // 1\n    // 2\n    // 3\n    // 4\n    // 5\n    // 6\n    // 7\n    // 8\n    \n ```"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "markdown",
+      "data": "## Coutinue 语句\n  \n  ** continue 语句和 break 语句相似。有所不同的是，它不是退出一个循环，而是终止当前的循环，并开始下一次新的循环。**\n  \n  ```js\n      for(var i = 5; i >= 0; i --){\n        if(i == 4 || i == 3 || i == 1){\n            continue;\n          }\n          console.log(i)\n     }\n     \n     // 5\n     // 2\n     // 0\n  ```"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "markdown",
+      "data": "## Break 语句\n\n  **return 语句就是用于指定函数返回的值。 return 语句只能出现在 函数体内，出现在代码的任何其他地方都是会出现语法错误**\n  \n  ```js\n      var a=[1,2,3];\n       var b=[4,5,6,7,8];\n       function test(){\n            for(var i=0;i<a.length;i++){\n                for(var j=0;j<b.length;j++){\n                    if(b[j]==5){\n                        // break\n                        return;\n                    }else{\n                        console.log(13);\n                    }\n                }\n                \n                console.log(12);\n            }\n            console.log(14);\n        }\n        test();//打印结果为：13\n  ```\n  \n### 即使在多层循环中，return 也会终止代码执行（函数体不在执行，返回其结果）"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "<h3>相同之处，三者都会将此时进行的语句停止</h3><h3>不同之处：</h3><div><ol><ol><li>break： &nbsp; &nbsp; 只能终止最内层的循环，只能出现在 loop 和 Switch 语句中</li><li>continue： 直接进入下一次循环</li><li>终止函数体语句的执行，返回其结果</li></ol></ol><h3><br></h3><h3>番外： 在 map() ，forEach(), 等 中只能中断当前的 循环，且 只有 return 有效； continue 和 break 会报错。</h3></div><div><br></div>"
+    }
+  ]
+}

@@ -1,0 +1,47 @@
+{
+  "title": "5 - Array.forEach 和 Array.map 的区别",
+  "cells": [
+    {
+      "type": "markdown",
+      "data": "## Array.prototype.forEach\n\n`forEach()` 方法对数组的每个元素执行一次给定的函数。\n\n**返回值 为 undefined**\n\n**forEach() 被调用时，遍历的范围在第一次 调用callback 时就已经确定，不会调用forEach后添加到数组中的元素**\n\n**forEach() 被调用时，不会改变原数组，也就是调用它的数组 （尽管 callback 函数在被调用时可能会改变原数组）** 译注：此处说法可能不够明确，具体可参考EMCA语言规范：forEach does not directly mutate the object on which it is called but the object may be mutated by the calls to callbackfn.'，即 forEach 不会直接改变调用它的对象，但是那个对象可能会被 callback 函数改变。\n\n"
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "  const items = ['item1', 'item2', 'item3'];\n  const copy = [];\n  \n  // before\n  for (let i=0; i<items.length; i++) {\n    copy.push(items[i]);\n  }\n  \n  // after\n  items.forEach(function(item){\n    copy.push(item);\n  });\n"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "markdown",
+      "data": "## Array.prototype.map\n\n`map()` 方法创建一个新的数组，其结果是该数组中的每一个元素是调用一次提供的函数的返回值\n\n**map() 方法会给原数组中的每一个元素都按顺序调用一次 callback 函数。callback 每次执行后的返回值（包括undefined） 组合起来形成一个新数组。**\n\n**callback 函数会被自动传入三个参数：数组元素，元素索引，原数组本身**\n\n**map() 不修改调用它的原数组本身 （当然可以在 callback 执行时改变原数组 ）**"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "code",
+      "language": "javascript",
+      "data": "  const array1 = [1, 4, 9, 16];\n  \n  // pass a function to map\n  const map1 = array1.map(x => x * 2);\n  \n  console.log(map1);\n  // expected output: Array [2, 8, 18, 32]"
+    },
+    {
+      "type": "text",
+      "data": "<div><br></div><div><br></div>"
+    },
+    {
+      "type": "text",
+      "data": "<h3>两者的匿名函数中的 this，都指向window</h3>"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "<h2>区别：</h2><div><ul><li>Map() 有返回值， forEach() 没有返回值（返回undefined）</li><li>单纯的遍历时 forEach 适用； 想改变数据时 map 适用</li></ul></div>"
+    }
+  ]
+}

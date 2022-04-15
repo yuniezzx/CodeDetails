@@ -1,0 +1,41 @@
+{
+  "title": "1 - v-bind 和 v-model",
+  "cells": [
+    {
+      "type": "markdown",
+      "data": "## v-bind\n* **缩写** ：` ：`\n* **预期** ：`any (with argument)` | `Object (without argument)`\n* **参数** ：`attrOrProp (optional)`\n* **修饰**符：\n  * `.prop` - 作为一个 DOM property 绑定而不是作为 attribute 绑定。(差别在哪里？)\n  * `.camel` - (2.1.0+) 将 kebab-case attribute 名转换为 camelCase。(从 2.1.0 开始支持)\n  * `.sync `(2.3.0+) 语法糖，会扩展成一个更新父组件绑定值的 v-on 侦听器。\n  \n* **用法** ：\n  \n    动态地绑定一个或多个 attribute，或一个组件 prop 到表达式。\n\n    在绑定 class 或 style attribute 时，支持其它类型的值，如数组或对象。可以通过下面的教程链接查看详情。\n\n    在绑定 prop 时，prop 必须在子组件中声明。可以用修饰符指定不同的绑定类型。\n\n    没有参数时，可以绑定到一个包含键值对的对象。注意此时 class 和 style 绑定不支持数组和对象。"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "<b>注意：所谓的 <span style=\"caret-color: rgb(50, 50, 50);\"><font color=\"#323232\" style=\"background-color: rgb(254, 250, 0);\">动态</font> 指 绑定属性对应的值，并非一个写死的数值，换句话说 数值是可以变化的；</span></b><div><b><span style=\"caret-color: rgb(50, 50, 50);\">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 添加 v-bind 后， Vue 会当成 表达式来执行</span></b></div>"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "<b>示例：</b>"
+    },
+    {
+      "type": "markdown",
+      "data": "```html\n  <!-- 绑定一个 attribute -->\n  <img v-bind:src=\"imageSrc\">\n  \n  <!-- 动态 attribute 名 (2.6.0+) -->\n  <button v-bind:[key]=\"value\"></button>\n  \n  <!-- 缩写 -->\n  <img :src=\"imageSrc\">\n  \n  <!-- 动态 attribute 名缩写 (2.6.0+) -->\n  <button :[key]=\"value\"></button>\n  \n  <!-- 内联字符串拼接 -->\n  <img :src=\"'/path/to/images/' + fileName\">\n  \n  <!-- class 绑定 -->\n  <div :class=\"{ red: isRed }\"></div>\n  <div :class=\"[classA, classB]\"></div>\n  <div :class=\"[classA, { classB: isB, classC: isC }]\">\n  \n  <!-- style 绑定 -->\n  <div :style=\"{ fontSize: size + 'px' }\"></div>\n  <div :style=\"[styleObjectA, styleObjectB]\"></div>\n  \n  <!-- 绑定一个全是 attribute 的对象 -->\n  <div v-bind=\"{ id: someProp, 'other-attr': otherProp }\"></div>\n  \n  <!-- 通过 prop 修饰符绑定 DOM attribute -->\n  <div v-bind:text-content.prop=\"text\"></div>\n  \n  <!-- prop 绑定。“prop”必须在 my-component 中声明。-->\n  <my-component :prop=\"someThing\"></my-component>\n  \n  <!-- 通过 $props 将父组件的 props 一起传给子组件 -->\n  <child-component v-bind=\"$props\"></child-component>\n  \n  <!-- XLink -->\n  <svg><a :xlink:special=\"foo\"></a></svg>\n  \n  // .camel 修饰符允许在使用 DOM 模板时将 v-bind property 名称驼峰化，例如 SVG 的 viewBox property：\n  \n  <svg :view-box.camel=\"viewBox\"></svg>\n```"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "markdown",
+      "data": "## v-model\n\n  相对于 `v-bind` ，`v-model` 是一种更高级的数据绑定。\n  `v-model` 是 用于表单的 双向数据绑定。\n  \n **可以使用 `v-model`在 `<input>`, `<textarea>` 及 `<select>` 元素上创建双向绑定**\n \n 尽管有些神奇，但 v-model 本质上不过是语法糖。它负责监听用户的输入事件以更新数据，并对一些极端场景进行一些特殊处理。\n \n > v-model 会忽略所有表单元素的 value、checked、selected attribute 的初始值而总是将 Vue 实例的数据作为数据来源。你应该通过 JavaScript 在组件的 data 选项中声明初始值。\n \n **v-model 在内部为不同的输入元素使用不同的 property 并抛出不同的事件：**\n  * text 和 textarea 元素使用 value property 和 input 事件；\n  * checkbox 和 radio 使用 checked property 和 change 事件；\n  * select 字段将 value 作为 prop 并将 change 作为事件。\n  \n\n## 文本\n\n```html\n  <input v-model=\"message\" placeholder=\"edit me\">\n  <p>Message is: {{ message }}</p>\n```\n\n## 多行文本\n\n```html\n  <span>Multiline message is:</span>\n  <p style=\"white-space: pre-line;\">{{ message }}</p>\n  <br>\n  <textarea v-model=\"message\" placeholder=\"add multiple lines\"></textarea>\n```\n\n## 复选框\n\n单个复选框，绑定到布尔值：\n\n```html\n  <input type=\"checkbox\" id=\"checkbox\" v-model=\"checked\">\n  <label for=\"checkbox\">{{ checked }}</label>\n```\n\n多个复选框，绑定到同一个数组：\n\n```html\n  <input type=\"checkbox\" id=\"jack\" value=\"Jack\" v-model=\"checkedNames\">\n  <label for=\"jack\">Jack</label>\n  <input type=\"checkbox\" id=\"john\" value=\"John\" v-model=\"checkedNames\">\n  <label for=\"john\">John</label>\n  <input type=\"checkbox\" id=\"mike\" value=\"Mike\" v-model=\"checkedNames\">\n  <label for=\"mike\">Mike</label>\n  <br>\n  <span>Checked names: {{ checkedNames }}</span>\n```\n\n## 修饰符\n\n### .lazy\n\n  在默认情况下，v-model 在每次 input 事件触发后将输入框的值与数据进行同步 (除了上述输入法组合文字时)。你可以添加 lazy 修饰符，从而转为在 change 事件_之后_进行同步：\n  \n  ```html\n    <!-- 在“change”时而非“input”时更新 -->\n    <input v-model.lazy=\"msg\">\n  ```\n  \n### .number\n\n  如果想自动将用户的输入值转为数值类型，可以给 v-model 添加 number 修饰符：：\n  \n  ```html\n    <input v-model.number=\"age\" type=\"number\">\n  ```\n\n### .trim\n\n  如果要自动过滤用户输入的首尾空白字符，可以给 v-model 添加 trim 修饰符：\n  \n  ```html\n    <input v-model.trim=\"msg\">\n  ```"
+    },
+    {
+      "type": "text",
+      "data": "<h2>区别:</h2><div><ul><li>&nbsp; v-bind 数据只能从 data &nbsp;流向页面<br></li><li>&nbsp; v-model 数据不仅能从 data 流向页面，还可以从页面流向 data</li><ul><li>但 v-model 一般都应用于 表单类元素上</li><li>v-model： value 可以简写为 v-model， 因为 v-model 默认收集的就是 value 值</li></ul></ul></div>"
+    }
+  ]
+}

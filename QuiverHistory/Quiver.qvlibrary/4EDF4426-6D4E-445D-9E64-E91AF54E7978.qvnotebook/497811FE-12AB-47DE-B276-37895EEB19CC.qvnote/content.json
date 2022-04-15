@@ -1,0 +1,29 @@
+{
+  "title": "1 - 页面导入样式时，使用link和@import有什么区别？",
+  "cells": [
+    {
+      "type": "markdown",
+      "data": "### link\n  HTML外部资源链接元素 (<link>)规定了当前文档与外部资源的关系。该元素最常用于链接样式表，此外可以被用来创建站点图标(比如PC端的“favicon”图标和移动设备上用以显示在主屏幕的图标) 。\n\n```html\n  <link href=\"main.css\" rel=\"stylesheet\">\n```"
+    },
+    {
+      "type": "markdown",
+      "data": "### @import \n@import CSS@规则，用于从其他样式表导入样式规则。这些规则必须先于所有其他类型的规则，@charset 规则除外; 因为它不是一个嵌套语句，@import不能在条件组的规则中使用。\n\n```css\n  @import url;\n  @import url list-of-media-queries;\n```"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "<h2>区别：</h2><div><ol><li>&nbsp;&nbsp;<b>link</b> 属于 <b>HTML</b> <font color=\"#323232\" style=\"background-color: rgb(254, 250, 0);\">标签</font>，<b>@import</b> 属于 <b>CSS </b>提供的<font color=\"#323232\" style=\"background-color: rgb(254, 250, 0);\">语法规则</font></li><li>&nbsp;<b>页面加载时， link 引入的样式同时被加载，而@import引入的样式需要等页面加载完成后再加载</b></li><li>&nbsp;link 没有兼容性问题，而 @import 支持IE5 以上版本</li><li><font color=\"#323232\" style=\"background-color: rgb(254, 250, 0);\">由于DOM方法 是基于文档的</font>, 可以通过JS 操作DOM 来插入 link 标签来改变样式，但是 DOM 无法作用于 @import</li></ol><br></div><div><b><br></b></div><div><br></div>"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": ""
+    }
+  ]
+}

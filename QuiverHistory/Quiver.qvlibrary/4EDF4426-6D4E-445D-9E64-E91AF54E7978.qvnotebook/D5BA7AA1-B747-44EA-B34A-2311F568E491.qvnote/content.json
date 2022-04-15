@@ -1,0 +1,57 @@
+{
+  "title": "3 - CSS 中页面上隐藏元素的方法",
+  "cells": [
+    {
+      "type": "text",
+      "data": "<h3><ul><li>站位（仍然存在，占据位置，只是不显示）</li></ul></h3><br>"
+    },
+    {
+      "type": "code",
+      "language": "css",
+      "data": "    visibility: hidden;\n    margin-left: -100%;\n    opacity: 0;\n    transform: scale(0);"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "<h3><ul><li>不占位（空间中就不存在）</li></ul></h3>"
+    },
+    {
+      "type": "code",
+      "language": "c_cpp",
+      "data": "    display: none;\n    width: 0; height: 0; overflow: hidden;"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "<h3><ul><li>仅对块内文本元素</li></ul></h3>"
+    },
+    {
+      "type": "code",
+      "language": "c_cpp",
+      "data": "    text-indent: - 9999px;\n    font-size: 0;"
+    },
+    {
+      "type": "text",
+      "data": ""
+    },
+    {
+      "type": "text",
+      "data": "<h3><ul><li>其他</li></ul></h3>"
+    },
+    {
+      "type": "code",
+      "language": "c_cpp",
+      "data": "    z-index: - 99; // 作用设置了定位元素以及后代 或 flex\n    // z-index 的值越大，就越在上端，会覆盖值小的 元素"
+    },
+    {
+      "type": "text",
+      "data": ""
+    }
+  ]
+}

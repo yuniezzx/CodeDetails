@@ -1,0 +1,44 @@
+{
+  "title": "2 - 用递归算法实现，数组长度为5且元素的随机数在2-32间不重复的值",
+  "cells": [
+    {
+      "type": "text",
+      "data": "<p dir=\"auto\" style=\"box-sizing: border-box; margin-top: 0px; margin-bottom: 16px; color: rgb(36, 41, 47); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 14px; font-variant-ligatures: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); text-decoration-thickness: initial;\">描述：</p><ol dir=\"auto\" style=\"box-sizing: border-box; padding-left: 2em; margin-top: 0px; color: rgb(36, 41, 47); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 14px; font-variant-ligatures: normal; orphans: 2; widows: 2; background-color: rgb(255, 255, 255); text-decoration-thickness: initial; margin-bottom: 0px !important;\"><li style=\"box-sizing: border-box; margin-left: 0px;\">这是一道大题目，把考点拆成了4个小项；需要侯选人用递归算法实现：<br style=\"box-sizing: border-box;\">a) 生成一个长度为5的空数组arr。<br style=\"box-sizing: border-box;\">b) 生成一个（2－32）之间的随机整数rand。<br style=\"box-sizing: border-box;\">c) 把随机数rand插入到数组arr内，如果数组arr内已存在与rand相同的数字，则重新生成随机数rand并插入到arr内[需要使用递归实现，不能使用for/while等循环]<br style=\"box-sizing: border-box;\">d) 最终输出一个长度为5，且内容不重复的数组arr。</li></ol><div style=\"orphans: 2; widows: 2;\"><font color=\"#24292f\" face=\"-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji\"><span style=\"caret-color: rgb(36, 41, 47); font-size: 14px;\"><br></span></font></div><div style=\"orphans: 2; widows: 2;\"><font color=\"#24292f\" face=\"-apple-system, system-ui, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji\"><span style=\"caret-color: rgb(36, 41, 47); font-size: 14px;\"><br></span></font></div>"
+    },
+    {
+      "type": "text",
+      "data": "<span style=\"caret-color: rgb(36, 41, 47); color: rgb(36, 41, 47); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);\">a) 生成一个长度为5的空数组arr :</span>"
+    },
+    {
+      "type": "code",
+      "language": "c_cpp",
+      "data": " let a = new Array(5)"
+    },
+    {
+      "type": "text",
+      "data": "再 使用 new 关键字时，&nbsp;<div><ul><li>再 Array中添加 number， 可以生成一个包含 empty ，有长度的 空数组<br></li><li>添加的是 string ， 可以生成包含 string 值的 数组</li><li>添加的是 array， 可以将 添加的array 中的值展开</li></ul><div><br></div></div>"
+    },
+    {
+      "type": "text",
+      "data": "<span style=\"caret-color: rgb(36, 41, 47); color: rgb(36, 41, 47); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);\">b) 生成一个（2－32）之间的随机整数rand :</span><div><span style=\"caret-color: rgb(36, 41, 47); color: rgb(36, 41, 47); font-family: -apple-system, system-ui, &quot;Segoe UI&quot;, Helvetica, Arial, sans-serif, &quot;Apple Color Emoji&quot;, &quot;Segoe UI Emoji&quot;; font-size: 14px; orphans: 2; widows: 2; background-color: rgb(255, 255, 255);\"><br></span></div>"
+    },
+    {
+      "type": "code",
+      "language": "c_cpp",
+      "data": " let rand = Math.floor(Math.random() * 31 + 2)"
+    },
+    {
+      "type": "markdown",
+      "data": "## Math.random()\nMath.random() 函数返回一个浮点数,伪随机数在范围从0到小于1，也就是说，从0（包括0）往上，但是不包括1（排除1），然后您可以缩放到所需的范围。\n\n### 得到一个大于等于0，小于1之间的随机数\n```js\n  function getRandom() {\n    return Math.random();\n  }\n```\n\n### 得到一个两数之间的随机数\n这个例子返回了一个在指定值之间的随机数。这个值不小于 min（有可能等于），并且小于（不等于）max\n```js\n  function getRandomArbitrary(min, max) {\n    return Math.random() * (max - min) + min;\n  }\n```\n\n### 得到一个两数之间的随机整数\n这个例子返回了一个在指定值之间的随机整数。这个值不小于 min （如果 min 不是整数，则不小于 min 的向上取整数），且小于（不等于）max。\n```js\n  function getRandomInt(min, max) {\n    min = Math.ceil(min);\n    max = Math.floor(max);\n    return Math.floor(Math.random() * (max - min)) + min; //不含最大值，含最小值\n  }\n```\n\n### 得到一个两数之间的随机整数，包括两个数在内\n上一个例子提到的函数 getRandomInt() 结果范围包含了最小值，但不含最大值。如果你的随机结果需要同时包含最小值和最大值，怎么办呢?  getRandomIntInclusive() 函数可以实现。\n```js\n  function getRandomIntInclusive(min, max) {\n    min = Math.ceil(min);\n    max = Math.floor(max);\n    return Math.floor(Math.random() * (max - min + 1)) + min; //含最大值，含最小值 \n  }\n```"
+    },
+    {
+      "type": "text",
+      "data": "<h2>结果：</h2>"
+    },
+    {
+      "type": "code",
+      "language": "c_cpp",
+      "data": "    var arr = new Array(5);\n    var num = randomNumber();\n    var i = 0;\n    randomArr(arr,num);\n    function randomArr(arr,num) {\n        if (arr.indexOf(num)< 0){\n            arr[i] = num;\n            i++;\n        } else {\n            num = randomNumber();\n        }\n        if (i>=arr.length){\n            console.log(arr);\n            return;\n        }else{\n            randomArr(arr,num)\n        }\n    }\n    function randomNumber() {\n        return Math.floor(Math.random()*31 + 2)\n    }"
+    }
+  ]
+}
