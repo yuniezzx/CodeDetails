@@ -291,5 +291,36 @@ fn calculate_length(s: &String) -> usize {
 变量s也存在栈内存中，通过 ptr 记录了 s1 的指针地址，来实现对 String("hello") 的引用
 
 
+##### 借用
 
+```rust
+fn calculate_length(s: &String) -> usize { // s 是 String 的引用
+    s.len()
+} // 这里，s 离开了作用域。但因为它并不拥有引用值的所有权，
+  // 所以什么也不会发生
+
+```
+
+
+
+变量 `s` 有效的作用域与函数参数的作用域一样，不过当 `s` 停止使用时并不丢弃引用指向的数据，因为 `s` 并没有所有权。当函数使用引用而不是实际值作为参数，无需返回值来交还所有权，因为就不曾拥有所有权。
+
+我们将创建一个引用的行为称为 **借用**（*borrowing*）。正如现实生活中，如果一个人拥有某样东西，你可以从他那里借来。当你使用完毕，必须还回去。我们并不拥有它。
+
+
+##### 可变引用和不可变引用
+当我们从创建一个引用时，是不拥有所有权的，所有一般情况下，是无法改变借用过来的值的，但是可以添加 &mut 表示该引用是可变的。
+
+```rust
+fn main() {
+    let mut s = String::from("hello");
+
+    change(&mut s);
+}
+
+fn change(some_string: &mut String) {
+    some_string.push_str(", world");
+}
+
+```
 
