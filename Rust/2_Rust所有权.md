@@ -248,6 +248,38 @@ fn takes_and_gives_back(a_string: String) -> String { // a_string 进入作用�
 
 ```
 
+#### 引用与借用
+
+##### 引用
+
+- 简单来讲，引用是创建一个变量，指向另个指针的地址，而不是直接指向 **该指针指向的堆内存地址**
+- 通过 & 取地址符获取对一个指针变量的引用
+
+
+
+```rust
+fn main() {
+    let s1 = String::from("hello");
+
+    let len = calculate_length(&s1);
+
+    println!("The length of '{}' is {}.", s1, len);
+}
+
+fn calculate_length(s: &String) -> usize {
+    s.len()
+}
+
+```
+
+
+
+![](https://kaisery.github.io/trpl-zh-cn/img/trpl04-05.svg)
+
+变量s1是栈内存中的一个指针地址，通过 ptr 记录了存储于堆内存中的 String("hello") 的地址
+
+变量s也存在栈内存中，通过 ptr 记录了 s1 的指针地址，来实现对 String("hello") 的引用
+
 
 
 
