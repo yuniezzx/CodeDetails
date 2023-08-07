@@ -167,3 +167,20 @@ fn build_user(email: String, username: String) -> User {
     }
 }
 ```
+
+重复每个名称就更加烦人了。幸运的是，有一个方便的简写语法！
+我们可以使用 字段初始化简写语法（field init shorthand）来重写 build_user，这样其行为与之前完全相同，不过无需重复 username 和 email 了
+
+···rust
+fn build_user(email: String, username: String) -> User {
+    User {
+        active: true,
+        username,
+        email,
+        sign_in_count: 1,
+    }
+}
+```
+
+
+
